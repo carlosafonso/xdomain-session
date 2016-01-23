@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+	<h1>Cross-domain authentication Proof-of-Concept</h1>
+	<div id="result">Waiting to retrieve data from server...</div>
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script>
+		$(function() {
+			$.get('http://localhost:8000/foo.php', function() {
+			})
+			.done(function() {
+				console.log('done');
+			})
+			.fail(function(res) {
+				if (res.status === 401) {
+					setText('You are not authenticated!');
+				} else {
+					setText('No idea what jus happened there, but it failed!');
+				}
+			})
+			.always(function() {
+			});
+		});
+
+		function clearText() {
+			$('#result').html('');
+			$('#result').removeClass();
+		}
+
+		function setText(text, klass) {
+			$('#result').html(text);
+			if (klass !== undefined) {
+				$('#result').addClass(klass);
+			}
+		}
+	</script>
+</body>
+</html>
