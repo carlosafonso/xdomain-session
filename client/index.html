@@ -3,15 +3,19 @@
 <head>
 </head>
 <body>
-	<h1>Cross-domain authentication Proof-of-Concept</h1>
+	<h1>Cross-domain authentication and session Proof-of-Concept</h1>
 	<div id="result">Waiting to retrieve data from server...</div>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script>
 		$(function() {
-			$.get('http://localhost:8000/foo.php', function() {
+			$.get({
+				url: 'http://localhost:8000/foo.php',
+				xhrFields: {
+					withCredentials: true
+				}
 			})
-			.done(function() {
-				console.log('done');
+			.done(function(data) {
+				setText('Successfully authenticated!<br/>Session ID is ' + data.sess_id);
 			})
 			.fail(function(res) {
 				if (res.status === 401) {
