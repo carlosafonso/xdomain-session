@@ -17,4 +17,5 @@ Run the `serve.sh` utility to start PHP servers for the client and the server
 * Furthermore, the `Access-Control-Allow-Origin` cannot be a wildcard (`*`) and must explicitly include the origin host [2].
 
 [1] https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials
+
 [2] https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
